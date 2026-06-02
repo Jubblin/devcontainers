@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Validate Markdown, JSON, and YAML formatting
         run: npx --yes prettier@3 --check "**/*.{md,json,yml,yaml}"

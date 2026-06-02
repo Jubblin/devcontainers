@@ -1,0 +1,28 @@
+name: Validate files
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate file formats
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate Markdown, JSON, and YAML formatting
+        run: npx --yes prettier@3 --check "**/*.{md,json,yml,yaml}"
+
+      - name: Validate GitHub Actions workflows
+        uses: reviewdog/action-actionlint@v1
